@@ -10,7 +10,7 @@ import { LogoComponent } from './logo/logo.component';
     LogoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class HeaderModule { }

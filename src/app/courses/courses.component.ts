@@ -26,10 +26,20 @@ const mockCourseSecond = {
 export class CoursesComponent implements OnInit {
 
   public courses: Course[] | undefined;
+  public placeholder = "Search course";
 
   constructor() { }
 
   ngOnInit(): void {
     this.courses =  [mockCourseFirst, mockCourseSecond];
   }
+
+  public onChange(event: any): void {
+    console.log(event)
+  }
+
+  public onClick(): void {
+    console.log("hi")
+  }
+
 }
