@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 export interface Course {
   id: string;
@@ -15,7 +15,6 @@ export interface Course {
 })
 
 export class CourseComponent implements OnInit {
-
   constructor() {
     this.course = {
       id: '',
@@ -26,10 +25,16 @@ export class CourseComponent implements OnInit {
     };
   }
 
-  @Input()
+  @Input() 
   public course: Course;
 
+  @Output() public onDelete: EventEmitter<string> = new EventEmitter<string>();
+
   ngOnInit(): void {
+  }
+  
+  public delete(): void {
+    this.onDelete.emit(this.course.id);
   }
 
 }
