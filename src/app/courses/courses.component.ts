@@ -7,14 +7,28 @@ const coursesList = [
     title: 'First Course',
     creation: '01.01.21',
     duration: '50 min',
-    description: 'Very good course',
+    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
   },
   {
     id: 'second',
     title: 'Second Course',
     creation: '02.02.21',
     duration: '35 min',
-    description: 'Another good course',
+    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
+  },
+  {
+    id: 'third',
+    title: 'Third Course',
+    creation: '02.02.21',
+    duration: '85 min',
+    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
+  },
+  {
+    id: 'fourth',
+    title: 'Fourth Course',
+    creation: '02.02.21',
+    duration: '35 min',
+    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
   }
 ];
 
@@ -31,7 +45,7 @@ export class CoursesComponent implements OnInit {
   };
 
   public courses: Array<Course | undefined> | any;  // todo: fix the type
-  public placeholder = "Search course";
+  public placeholder = "";
 
   ngOnInit(): void {
     this.courses =  coursesList;
@@ -42,7 +56,7 @@ export class CoursesComponent implements OnInit {
   }
 
   public onClick(): void {
-    console.log("hi")
+    console.log("You searched for: ", this.placeholder);
   }
 
   public onRootDelete(id: string): void {

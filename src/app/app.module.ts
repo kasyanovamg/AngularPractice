@@ -10,6 +10,7 @@ import {HeaderModule} from './header/header.module';
 import { CourseComponent } from './course/course.component';
 import {CoursesComponent} from './courses/courses.component';
 import { UserComponent } from './user/user.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { UserComponent } from './user/user.component';
     CoursesComponent,
     CourseComponent,
     UserComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     BrowserModule,

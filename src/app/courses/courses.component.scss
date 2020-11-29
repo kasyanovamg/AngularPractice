@@ -1,0 +1,71 @@
+@import "../../constants.scss";
+
+.courses-page {    
+    &__contents {
+        margin: 0 auto;
+        width: $mainconstainer;
+        padding: 20px 0;
+    }
+
+    &__search-box {
+        margin-right: 12px;
+        padding: 12px;
+        border-radius: 3px;
+	    border: 1px solid #CED0DB;
+	    background: #FFFFFF;
+	    box-sizing: border-box;
+	    border-color: #ced0db;
+	    border-width: 1px;
+	    border-style: solid;
+	    height: 36px;
+        width: 240px;
+    }
+
+    &__search-btn {
+        border-radius: 3px;
+        background: #67A300;
+        height: 36px;
+        width: 73px;
+        border: 0;
+        color: #FFFFFF;
+        font-size: 14px;
+        font-family: "SourceSansPro-Semibold";
+        font-weight: 600;
+    }
+
+    &__add-container {
+        text-align: right;
+    }
+
+    &__add-btn {
+        border-radius: 3px;
+        background: #009ECC;
+        height: 36px;
+        width: 111px;
+        border: 0;
+        color: #FFFFFF;
+        font-size: 14px;
+        font-family: "SourceSansPro-Semibold";
+        font-weight: 600;
+    }
+
+    &__load-more {
+        padding: 24px;
+        margin: 24px auto; 
+        border-radius: 6px;
+        background: #FFFFFF;
+        box-shadow: 0 1px 2px 0 rgba(29,30,38,0.10), 0 2px 10px 0 rgba(29,30,38,0.15);
+        text-align: center;
+    }
+
+    &__load-more-btn {
+        border: 0;
+        background-color: transparent;
+        line-height: 24px;
+        letter-spacing: 0;
+        color: #5681EE;
+        font-size: 12px;
+        font-family: "SourceSansPro-Regular";
+        cursor: pointer;  
+    }
+}

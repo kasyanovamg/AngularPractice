@@ -34,7 +34,8 @@ export class CourseComponent implements OnInit {
   }
   
   public delete(): void {
-    this.onDelete.emit(this.course.id);
+    console.log("You will delete the course with id: ", this.course.id);
+    
   }
 
 }

@@ -1,0 +1,19 @@
+@import "../../constants.scss";
+
+.breadcrumbs {
+	background-color: white;
+
+	&__content  {
+		line-height: 64px;
+		letter-spacing: 0;
+		color: #464A5A;
+		font-size: 14px;
+		font-family: "SourceSansPro-Bold";
+		text-transform: none;
+		text-align: left;
+		font-weight: 700;
+		height: 64px;
+		width: $mainconstainer;
+		margin: 0 auto;
+	}
+}
