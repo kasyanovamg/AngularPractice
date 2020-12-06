@@ -42,21 +42,21 @@ export class CoursesComponent implements OnInit {
 
   constructor() {
     this.courses = [];
-  };
+  }
 
   public courses: Array<Course | undefined> | any;  // todo: fix the type
-  public placeholder = "";
+  public placeholder = '';
 
   ngOnInit(): void {
     this.courses =  coursesList;
   }
 
   public onChange(event: any): void {
-    console.log(event)
+    console.log(event);
   }
 
   public onClick(): void {
-    console.log("You searched for: ", this.placeholder);
+    console.log('You searched for: ', this.placeholder);
   }
 
   public onRootDelete(id: string): void {
