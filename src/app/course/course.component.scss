@@ -1,64 +1,92 @@
 .course {
-    padding: 24px;
-    margin: 24px auto; 
-    border-radius: 6px;
-	background: #FFFFFF;
-	box-shadow: 0 1px 2px 0 rgba(29,30,38,0.10), 0 2px 10px 0 rgba(29,30,38,0.15);
+  padding: 24px;
+  margin: 24px auto;
+  border-radius: 6px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.10), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+  border: 3px solid transparent;
 
-    &__title {
-        margin: 0;
-        color: #333333;
-        font-size: 24px;
-        font-family: "SourceSansPro-Semibold";
-        text-transform: none;
-        text-align: left;
-        font-weight: 600;
-    }
+  &__highlighted {
+    background: #fff4c2;
+  }
 
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  &__title {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: #333333;
+    font-size: 24px;
+    font-family: "SourceSansPro-Semibold";
+    text-transform: none;
+    text-align: left;
+    font-weight: 600;
+  }
 
-    &__info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        line-height: 18px;
-        color: #858997;
-        font-size: 14px;
-        font-family: "SourceSansPro-Regular";
-    }
+  &__star {
+    margin-left: 20px;
+    color: gray;
+    font-size: 16px;
+    font-weight: 400;
+  }
 
-    &__body {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    &__description {
-        line-height: 18px;
-        letter-spacing: 0;
-        color: #474A59;
-        font-size: 14px;
-        font-family: "SourceSansPro-Regular";
-        text-transform: none;
-        text-align: left;
-        height: 54px;
-        max-width: 876px;
-    }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 18px;
+    color: #858997;
+    font-size: 14px;
+    font-family: "SourceSansPro-Regular";
+  }
 
-    &__btn {
-        border-radius: 3px;
-        background: #009ECC;
-        height: 24px;
-        border: 0;
-        color: #FFFFFF;
-        font-size: 12px;
-        font-family: "SourceSansPro-Semibold";
-        font-weight: 600;
-        margin-left: 12px;
-    }
+  &__info-item {
+    display: flex;
+    align-content: center;
+  }
+
+  &__icon {
+    display: inline-block;
+    margin: 0 10px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: grey;
+  }
+
+  &__body {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__description {
+    line-height: 18px;
+    letter-spacing: 0;
+    color: #474A59;
+    font-size: 14px;
+    font-family: "SourceSansPro-Regular";
+    text-transform: none;
+    text-align: left;
+    height: 54px;
+    max-width: 876px;
+  }
+
+  &__btn {
+    border-radius: 3px;
+    background: #009ECC;
+    height: 24px;
+    border: 0;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-family: "SourceSansPro-Semibold";
+    font-weight: 600;
+    margin-left: 12px;
+  }
 }

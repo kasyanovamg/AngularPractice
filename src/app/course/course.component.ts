@@ -3,9 +3,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export interface Course {
   id: string;
   title: string;
-  creation: string;
-  duration: string;
+  creation: number;
+  duration: number;
   description: string;
+  star?: boolean;
 }
 
 @Component({
@@ -19,18 +20,25 @@ export class CourseComponent implements OnInit {
     this.course = {
       id: '',
       title: '',
-      creation: '',
-      duration: '',
+      creation: 0,
+      duration: 0,
       description: '',
+      star: false,
     };
+    this.isStarShown = false;
   }
+
+  public isStarShown: boolean | undefined;
 
   @Input()
   public course: Course;
 
   @Output() public onDelete: EventEmitter<string> = new EventEmitter<string>();
+  public color: any;
 
   ngOnInit(): void {
+    this.isStarShown = this.course.star;
+    this.color = '';
   }
 
   public delete(): void {

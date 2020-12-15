@@ -11,6 +11,10 @@ import { CourseComponent } from './course/course.component';
 import {CoursesComponent} from './courses/courses.component';
 import { UserComponent } from './user/user.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import {BorderColorDirective} from './borderColorDirective';
+import {CreationDatePipe} from './creationDatePipe';
+import {OrderBy} from './orderByPipe';
+import {FilterCourses} from './filterCoursesPipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     CourseComponent,
     UserComponent,
     BreadcrumbsComponent,
+    BorderColorDirective,
+    CreationDatePipe,
+    OrderBy,
+    FilterCourses,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     HeaderModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [FilterCourses],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
