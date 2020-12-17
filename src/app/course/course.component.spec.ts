@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseComponent } from './course.component';
 import {By} from '@angular/platform-browser';
+import {CreationDatePipe} from '../creationDatePipe';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -9,7 +10,7 @@ describe('CourseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseComponent ]
+      declarations: [ CourseComponent, CreationDatePipe ]
     })
     .compileComponents();
   });
@@ -39,7 +40,7 @@ describe('CourseComponent', () => {
 
 // testing as a class
 describe('CourseComponent as a class', () => {
-  it('should emit delete once clicked', () => {
+    it('should emit delete once clicked', () => {
     const course = new CourseComponent();
     const spy = spyOn(course, 'delete');
     course.delete();
