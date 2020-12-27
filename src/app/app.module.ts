@@ -15,6 +15,7 @@ import {BorderColorDirective} from './borderColorDirective';
 import {CreationDatePipe} from './creationDatePipe';
 import {OrderBy} from './orderByPipe';
 import {FilterCourses} from './filterCoursesPipe';
+import {CoursesService} from './shared/courses.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {FilterCourses} from './filterCoursesPipe';
     HeaderModule,
     FormsModule,
   ],
-  providers: [FilterCourses],
+  providers: [FilterCourses, CoursesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

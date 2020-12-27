@@ -1,46 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {Course} from '../course/course.component';
 import {FilterCourses} from '../filterCoursesPipe';
-
-const coursesList = [
-  {
-    id: 'first',
-    title: 'First Course',
-    creation: 1589479993000,
-    duration: 62,
-    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-    star: true,
-  },
-  {
-    id: 'second',
-    title: 'Second Course',
-    creation: 1600107193000,
-    duration: 35,
-    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-  },
-  {
-    id: 'fourth',
-    title: 'Fourth Course',
-    creation: 1610647993000,
-    duration: 142,
-    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-    star: true,
-  },
-  {
-    id: 'third',
-    title: 'Third Course',
-    creation: 1610687993000,
-    duration: 84,
-    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-  },
-  {
-    id: 'fifth',
-    title: 'Fifth Course',
-    creation: 1607969893000,
-    duration: 84,
-    description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-  },
-];
+import {CoursesService} from '../shared/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -48,9 +9,9 @@ const coursesList = [
   styleUrls: ['./courses.component.scss']
 })
 
-export class CoursesComponent implements OnInit {
+export class CoursesComponent implements OnInit, DoCheck {
 
-  constructor(private filterCourses: FilterCourses) {
+  constructor(private filterCourses: FilterCourses, private coursesService: CoursesService) {
     this.courses = [];
     this.courseLength = false;
   }
@@ -61,8 +22,12 @@ export class CoursesComponent implements OnInit {
   public courseLength: boolean;
 
   ngOnInit(): void {
-    this.courses = coursesList;
+    this.courses = this.coursesService.getCourseList();
     this.courseLength = !!this.courses.length;
+  }
+
+  ngDoCheck(): void {
+    this.courses = this.coursesService.getCourseList();
   }
 
   public onChange(event: any): void {
@@ -70,11 +35,11 @@ export class CoursesComponent implements OnInit {
   }
 
   public onClick(): void {
-    this.courses = this.filterCourses.transform(coursesList, this.searchedWord);
+    this.courses = this.filterCourses.transform(this.coursesService.getCourseList(), this.searchedWord);
   }
 
   public onRootDelete(id: string): void {
-    this.courses = this.courses.find((item?: Course) => item?.id !== id);
+    this.coursesService.removeCourse(id);
   }
 
 }
