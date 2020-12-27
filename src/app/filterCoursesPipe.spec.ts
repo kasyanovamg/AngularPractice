@@ -29,7 +29,7 @@ describe('TitleCasePipe', () => {
   const pipe = new FilterCourses();
 
   it('transforms courses to courses filtered by title', () => {
-    expect(pipe.transform(mockCourseList, 'Second')).toBe([{
+    expect(pipe.transform(mockCourseList, 'Second')).toEqual([{
       id: 'second',
       title: 'Second Course',
       creation: 1600107193000,
@@ -39,11 +39,11 @@ describe('TitleCasePipe', () => {
   });
 
   it('transforms courses to empty array if the value is not found', () => {
-    expect(pipe.transform(mockCourseList, 'abc def')).toBe([]);
+    expect(pipe.transform(mockCourseList, 'abc def')).toEqual([]);
   });
 
   it('does not transform courses if the searched value is empty', () => {
-    expect(pipe.transform(mockCourseList, '')).toBe(mockCourseList);
+    expect(pipe.transform(mockCourseList, '')).toEqual(mockCourseList);
   });
 
 });

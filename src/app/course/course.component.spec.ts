@@ -30,12 +30,6 @@ describe('CourseComponent', () => {
     fixture.debugElement.query(By.css('#delete-btn')).triggerEventHandler('click', null);
     expect(spy).toHaveBeenCalled();
   });
-
-  it('should log a message', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.delete();
-    expect(consoleSpy).toHaveBeenCalled();
-  });
 });
 
 // testing as a class

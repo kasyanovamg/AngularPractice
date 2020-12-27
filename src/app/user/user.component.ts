@@ -8,16 +8,19 @@ import {AuthenticationService} from '../shared/authentication.service';
 })
 export class UserComponent implements OnInit {
 
+  private userInfo: {email: string};
   public userEmail: string;
 
   constructor(private authService: AuthenticationService) {
+    this.userInfo = { email : '' };
     this.userEmail = '';
   }
 
   @Input()
 
   ngOnInit(): void {
-    this.userEmail = this.authService.getUserInfo()?.email;
+    this.userInfo = this.authService.getUserInfo();
+    this.userEmail = this.userInfo?.email;
   }
 
   onLogout(): void {

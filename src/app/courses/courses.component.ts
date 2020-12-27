@@ -38,8 +38,8 @@ export class CoursesComponent implements OnInit, DoCheck {
     this.courses = this.filterCourses.transform(this.coursesService.getCourseList(), this.searchedWord);
   }
 
-  public onRootDelete(id: string): void {
-    this.coursesService.removeCourse(id);
+  public onRootDelete(id: string): Array<Course> | void {
+    return this.coursesService.removeCourse(id);
   }
 
 }

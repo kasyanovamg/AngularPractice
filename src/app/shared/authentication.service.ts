@@ -24,7 +24,7 @@ export class AuthenticationService {
   }
 
   getUserInfo(): any {
-    const storageItem = localStorage.getItem('userInfo') || '';
-    return JSON.parse(storageItem);
+    const storageItem = localStorage.getItem('userInfo');
+    return JSON.parse(storageItem as string);
   }
 }
