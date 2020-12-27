@@ -1,30 +1,27 @@
 import {Component, Input, OnInit} from '@angular/core';
-
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-}
+import {AuthenticationService} from '../shared/authentication.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit, User {
+export class UserComponent implements OnInit {
 
-  constructor() {
-    this.firstName = 'Maria';
-    this.lastName = 'Kasianova';
-    this.id = '1234';
+  public userEmail: string;
+
+  constructor(private authService: AuthenticationService) {
+    this.userEmail = '';
   }
 
   @Input()
-  public firstName: string;
-  public id: string;
-  public lastName: string;
 
   ngOnInit(): void {
+    this.userEmail = this.authService.getUserInfo()?.email;
+  }
+
+  onLogout(): void {
+    return this.authService.logout();
   }
 
 }

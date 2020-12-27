@@ -1,39 +1,30 @@
-import {inject, Injectable, InjectionToken, Injector} from '@angular/core';
-
-
-const APP_STORAGE = new InjectionToken('userInfo', {
-  providedIn: 'root',
-  factory: () => sessionStorage
-});
-
-// const injector = Injector.create({providers: [{provide: APP_STORAGE, useValue: 'http://localhost'}]});
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  isAuth = false;
+
   constructor() { }
 
-  login(): void {
-
+  login(userInfo: {email: ''}): void {
+    this.isAuth = true;
+    localStorage.setItem('userInfo', JSON.stringify({email: userInfo.email}));
   }
 
   logout(): void {
-
+    this.isAuth = false;
+    localStorage.setItem('userInfo', JSON.stringify(''));
   }
 
   isAuthenticated(): boolean {
-    return false;
+    return this.isAuth;
   }
 
   getUserInfo(): any {
-
+    const storageItem = localStorage.getItem('userInfo') || '';
+    return JSON.parse(storageItem);
   }
 }
-
-
-// const MY_SERVICE_TOKEN = new InjectionToken<AuthenticationService>('Manually constructed MyService', {
-//   providedIn: 'root',
-//   factory: () => new AuthenticationService(inject(true)),
-// });

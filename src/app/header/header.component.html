@@ -1,9 +1,9 @@
 <header>
     <div class="header">
-    <div class="logo"> 
+    <div class="logo">
         <app-logo></app-logo>
-        <h1>Video course </h1> 
+        <h1>Video course </h1>
     </div>
-    <app-user></app-user> 
+    <app-user *ngIf="isAuth"></app-user>
 </div>
 </header>
