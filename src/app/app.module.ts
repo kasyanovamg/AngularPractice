@@ -16,6 +16,7 @@ import {CreationDatePipe} from './creationDatePipe';
 import {OrderBy} from './orderByPipe';
 import {FilterCourses} from './filterCoursesPipe';
 import {CoursesService} from './shared/courses.service';
+import {LoginModule} from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {CoursesService} from './shared/courses.service';
     AppRoutingModule,
     HeaderModule,
     FormsModule,
+    LoginModule,
   ],
   providers: [FilterCourses, CoursesService],
   bootstrap: [AppComponent]

@@ -1,0 +1,25 @@
+<div class="form">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="form__content">
+    <h2 class="form__title">Login</h2>
+    <div class="form__container">
+      <div>Email</div>
+      <label>
+        <input name="email" ngModel required #email="ngModel" class="form__field">
+      </label>
+    </div>
+    <div class="form__container">
+      <div>Password</div>
+      <label>
+        <input name="password" ngModel class="form__field" type="password">
+      </label>
+    </div>
+    <div class="form__actions">
+      <div>
+        <a href="#">Forgot password</a>
+      </div>
+      <div>
+        <button class="form__submit">Login</button>
+      </div>
+    </div>
+  </form>
+</div>

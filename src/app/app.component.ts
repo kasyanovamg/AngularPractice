@@ -1,45 +1,20 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from './shared/authentication.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'My first angular';
+  public isAuth: boolean;
 
-  // understanding ordering on lifecycle hooks
+  constructor(private authService: AuthenticationService) {
+    this.isAuth = false;
+  }
 
-  // ngOnChanges(): void {
-  //   console.log("ngOnChanges()");
-  // }
-
-  // ngOnInit(): void {
-  //   console.log("ngOnInit()");
-  // }
-
-  // ngDoCheck(): void {
-  //   console.log("ngDoCheck()");
-  // }
-
-  // ngAfterContentInit(): void {
-  //   console.log("ngAfterContentInit()");
-  // }
-
-  // ngAfterContentChecked(): void {
-  //   console.log("ngAfterContentChecked()");
-  // }
-
-  // ngAfterViewInit(): void {
-  //   console.log("ngAfterViewInit()");
-  // }
-
-  // ngAfterViewChecked(): void {
-  //   console.log("ngAfterViewChecked()");
-  // }
-
-  // ngOnDestroy(): void {
-  //   console.log("ngOnDestroy()");
-  // }
-
+  ngOnInit(): void {
+    this.isAuth = this.authService.isAuthenticated();
+  }
 }

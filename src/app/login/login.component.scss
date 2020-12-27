@@ -1,0 +1,54 @@
+.form {
+  display: flex;
+  justify-content: center;
+  margin-top: 25vh;
+
+  &__content {
+    width: 368px;
+    padding: 24px;
+    background: #fff;
+  }
+
+  &__title {
+    color: #333333;
+    font-size: 24px;
+    font-family: "SourceSansPro-Semibold";
+    text-transform: none;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  &__container {
+    margin-top: 12px;
+  }
+
+  &__field {
+    border-radius: 3px;
+    border: 1px solid #CED0DB;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    height: 36px;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  &__submit {
+    border-radius: 3px;
+    background: #67A300;
+    height: 36px;
+    width: 79px;
+    line-height: 30px;
+    letter-spacing: -0.08px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: "SourceSansPro-Semibold";
+    text-transform: none;
+    text-align: center;
+    font-weight: 600;
+  }
+}
