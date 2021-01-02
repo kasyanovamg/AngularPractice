@@ -1,8 +1,8 @@
-<div class="course" [ngClass]="{'course__highlighted' : isStarShown}" [appCourseBorder]="course.creation">
+<div class="course" [ngClass]="{'course__highlighted' : course.star}" [appCourseBorder]="course.creation">
   <div class="course__header">
     <div class="course__title">
       <div>{{course.title | uppercase}}</div>
-      <span class="course__star" *ngIf="isStarShown"> Star placeholder</span>
+      <span class="course__star" *ngIf="course.star"> Star placeholder</span>
     </div>
     <div  class="course__info">
       <div class="course__info-item"><span class="course__icon"></span><span>{{course.duration | CreationDatePipe }}</span></div>

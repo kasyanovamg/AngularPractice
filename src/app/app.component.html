@@ -1,3 +1,4 @@
+<div *ngIf="!tempAddCourse">
 <div class="content">
 <app-header></app-header>
   <div *ngIf="isAuth">
@@ -7,3 +8,5 @@
   <app-login *ngIf="!isAuth"></app-login>
 </div>
 <app-footer class="footer"></app-footer>
+</div>
+<app-add-course *ngIf="tempAddCourse"></app-add-course>

@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "courses", pathMatch: "full" },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
 
-  { path: "courses", component: AppComponent },
-  
+  { path: 'courses', component: AppComponent },
+
 ];
 
 @NgModule({

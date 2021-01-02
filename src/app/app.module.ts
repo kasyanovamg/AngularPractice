@@ -17,6 +17,10 @@ import {OrderBy} from './orderByPipe';
 import {FilterCourses} from './filterCoursesPipe';
 import {CoursesService} from './shared/courses.service';
 import {LoginModule} from './login/login.module';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { DateComponent } from './date/date.component';
+import { DurationComponent } from './duration/duration.component';
+import { AuthorsComponent } from './authors/authors.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import {LoginModule} from './login/login.module';
     CreationDatePipe,
     OrderBy,
     FilterCourses,
+    AddCourseComponent,
+    DateComponent,
+    DurationComponent,
+    AuthorsComponent,
   ],
   imports: [
     BrowserModule,

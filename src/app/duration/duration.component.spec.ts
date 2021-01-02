@@ -1,0 +1,26 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { DurationComponent } from './duration.component';
+import {CreationDatePipe} from '../creationDatePipe';
+
+describe('DurationComponent', () => {
+  let component: DurationComponent;
+  let fixture: ComponentFixture<DurationComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ DurationComponent, CreationDatePipe ]
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DurationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,0 +1,46 @@
+<div class="content">
+  <app-header></app-header>
+  <div class="add-course">
+    <form class="add-course__content" (submit)="onSave()">
+      <h2 class="add-course__title">Login</h2>
+
+      <div class="add-course__container">
+        <div>Title</div>
+        <label>
+          <input name="title" required class="add-course__field">
+        </label>
+      </div>
+
+      <div class="add-course__container">
+        <div>Description</div>
+        <label>
+          <textarea name="description" required class="add-course__field"></textarea>
+        </label>
+      </div>
+
+      <div class="add-course__container">
+        <app-date [label]="fieldNames.date"></app-date>
+      </div>
+
+      <div class="add-course__container">
+        <app-duration [label]="fieldNames.duration"></app-duration>
+      </div>
+
+
+      <div class="add-course__container">
+        <app-authors [label]="fieldNames.authors"></app-authors>
+      </div>
+
+      <div class="add-course__actions">
+        <div>
+          <button type="button" class="add-course__cancel" (click)="onCancel()">Cancel</button>
+        </div>
+        <div>
+          <button type="submit" class="add-course__submit">Save</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+<app-footer class="footer"></app-footer>

@@ -25,20 +25,14 @@ export class CourseComponent implements OnInit {
       description: '',
       star: false,
     };
-    this.isStarShown = false;
   }
-
-  public isStarShown: boolean | undefined;
 
   @Input()
   public course: Course;
 
   @Output() public onDelete: EventEmitter<string> = new EventEmitter<string>();
-  public color: any;
 
   ngOnInit(): void {
-    this.isStarShown = this.course.star;
-    this.color = '';
   }
 
   public delete(): void {

@@ -1,0 +1,7 @@
+<div class="duration">
+  <div>{{label}}</div>
+  <label>
+    <input name="duration" required class="duration__field" type="number" (input)="onChange($event)">
+  </label>
+  <span>{{value | CreationDatePipe }}</span>
+</div>
