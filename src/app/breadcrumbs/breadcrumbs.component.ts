@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbsComponent implements OnInit {
 
+  @Input() public crumbName?: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.crumbName = this.crumbName ? `/ ${this.crumbName}` : '/ New Course';
   }
 
 }

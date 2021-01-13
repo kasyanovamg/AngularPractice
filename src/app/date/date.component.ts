@@ -11,6 +11,7 @@ export class DateComponent implements OnInit {
   }
 
   @Input() label?: string;
+  @Input() creationValue?: number;
 
   ngOnInit(): void {
   }

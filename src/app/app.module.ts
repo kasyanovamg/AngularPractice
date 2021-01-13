@@ -21,6 +21,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { DateComponent } from './date/date.component';
 import { DurationComponent } from './duration/duration.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AuthorsComponent } from './authors/authors.component';
     DateComponent,
     DurationComponent,
     AuthorsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

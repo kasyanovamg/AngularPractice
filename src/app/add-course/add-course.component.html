@@ -1,31 +1,29 @@
-<div class="content">
-  <app-header></app-header>
-  <div class="add-course">
+<app-breadcrumbs [crumbName]="foundCourse?.title"></app-breadcrumbs>
+<div class="add-course">
     <form class="add-course__content" (submit)="onSave()">
       <h2 class="add-course__title">Login</h2>
 
       <div class="add-course__container">
         <div>Title</div>
         <label>
-          <input name="title" required class="add-course__field">
+          <input name="title" required class="add-course__field" [value]="foundCourse?.title" >
         </label>
       </div>
 
       <div class="add-course__container">
         <div>Description</div>
         <label>
-          <textarea name="description" required class="add-course__field"></textarea>
+          <textarea name="description" required class="add-course__field" [value]="foundCourse?.description"></textarea>
         </label>
       </div>
 
       <div class="add-course__container">
-        <app-date [label]="fieldNames.date"></app-date>
+        <app-date [label]="fieldNames.date" [creationValue]="foundCourse?.creation"></app-date>
       </div>
 
       <div class="add-course__container">
         <app-duration [label]="fieldNames.duration"></app-duration>
       </div>
-
 
       <div class="add-course__container">
         <app-authors [label]="fieldNames.authors"></app-authors>
@@ -42,5 +40,3 @@
 
     </form>
   </div>
-</div>
-<app-footer class="footer"></app-footer>

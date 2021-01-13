@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Course} from '../course/course.component';
 import {FilterCourses} from '../filterCoursesPipe';
 import {CoursesService} from '../shared/courses.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -12,7 +13,7 @@ import {CoursesService} from '../shared/courses.service';
 
 export class CoursesComponent implements OnInit {
 
-  constructor(private filterCourses: FilterCourses, private coursesService: CoursesService) {
+  constructor(private filterCourses: FilterCourses, private coursesService: CoursesService, private router: Router) {
     this.courses = [];
     this.courseLength = false;
   }
@@ -30,20 +31,21 @@ export class CoursesComponent implements OnInit {
     this.courseLength = !!this.courses.length;
   }
 
-  // ngDoCheck(): void {
-  //   this.courses = this.coursesService.getCourseList();
-  // }
+  public onEdit(id: string): void {
+    this.router.navigate(['courses', id]);
+  }
 
-  public onChange(event: any): void {
-    console.log(event);
+  public onAdd(): void {
+    this.router.navigate(['courses/new']);
   }
 
   public onClick(): void {
     this.courses = this.filterCourses.transform(this.coursesService.getCourseList(), this.searchedWord);
   }
 
-  public onRootDelete(id: string): Array<Course> | void {
-    return this.coursesService.removeCourse(id);
+  public onRootDelete(id: string): void {
+    this.coursesService.removeCourse(id);
+    this.courses = this.coursesService.getCourseList();
   }
 
 }

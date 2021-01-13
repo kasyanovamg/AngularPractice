@@ -31,12 +31,17 @@ export class CourseComponent implements OnInit {
   public course: Course;
 
   @Output() public onDelete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public onEdit: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
   }
 
   public delete(): void {
     this.onDelete.emit(this.course.id);
+  }
+
+  public edit(): void {
+    this.onEdit.emit(this.course.id);
   }
 
 }

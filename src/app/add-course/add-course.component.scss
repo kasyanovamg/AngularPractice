@@ -1,22 +1,7 @@
-.content {
-  min-height: 100vh;
-  margin-bottom: -50px;
-  background-color: #ececec;
-}
-
-.footer {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  background: #303240;
-}
-
 .add-course {
   display: flex;
   justify-content: center;
-  margin-top: 25vh;
+  margin-top: 20vh;
 
   &__content {
     width: 730px;
