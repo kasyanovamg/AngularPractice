@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthenticationService} from '../shared/authentication.service';
-import {CoursesService} from '../shared/courses.service';
 import {Router} from '@angular/router';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +17,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm): void {
-    this.authService.login(f.form.value);
-    this.router.navigate(['courses']);
+    this.authService.login(f.form.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['courses']);
+        },
+      });
   }
 
 }

@@ -7,11 +7,11 @@ import {Course} from './course/course.component';
 export class OrderBy implements PipeTransform {
 
   transform(values: Array<Course>): Array<Course> {
-    return values.sort((a, b) => {
-      if (a.creation > b.creation) {
+    return values && values.sort((a, b) => {
+      if (a.date < b.date) {
         return 1;
       }
-      if (a.creation < b.creation) {
+      if (a.date > b.date) {
         return -1;
       }
       return 0;

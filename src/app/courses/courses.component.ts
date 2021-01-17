@@ -14,21 +14,26 @@ import {Router} from '@angular/router';
 export class CoursesComponent implements OnInit {
 
   constructor(private filterCourses: FilterCourses, private coursesService: CoursesService, private router: Router) {
-    this.courses = [];
     this.courseLength = false;
   }
 
   public searchedWord = '';
 
   public courseLength: boolean;
+  public isLoaded?: boolean;
 
   @Input()
   public courses: Array<Course | undefined> | any;  // todo: fix the type
 
 
   ngOnInit(): void {
-    this.courses = this.coursesService.getCourseList();
-    this.courseLength = !!this.courses.length;
+    this.coursesService.getCourseList()
+      .subscribe((res: Array<Course>) => {
+        this.courses = res;
+        this.courseLength = !!res.length;
+        this.isLoaded = true;
+        console.log(1111, this.courses, this.courseLength, this.isLoaded);
+      });
   }
 
   public onEdit(id: string): void {
@@ -40,12 +45,23 @@ export class CoursesComponent implements OnInit {
   }
 
   public onClick(): void {
-    this.courses = this.filterCourses.transform(this.coursesService.getCourseList(), this.searchedWord);
+    this.coursesService.getCourseList(this.searchedWord, 'date')
+      .subscribe((res: Array<Course>) => {
+        this.courses = res;
+        this.courseLength = !!res.length;
+        console.log(1111, this.courses, this.courseLength);
+      });
   }
 
   public onRootDelete(id: string): void {
-    this.coursesService.removeCourse(id);
-    this.courses = this.coursesService.getCourseList();
+    this.coursesService.removeCourse(id).subscribe();
+    // this.courses = this.coursesService.getCourseList();
+    this.coursesService.getCourseList(this.searchedWord, 'date')
+      .subscribe((res: Array<Course>) => {
+        this.courses = res;
+        this.courseLength = !!res.length;
+        console.log(1111, this.courses, this.courseLength);
+      });
   }
 
 }

@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 export interface Course {
   id: string;
-  title: string;
-  creation: number;
-  duration: number;
+  name: string;
+  date: number;
+  length: number;
   description: string;
-  star?: boolean;
+  isTopRated?: boolean;
 }
 
 @Component({
@@ -19,11 +19,11 @@ export class CourseComponent implements OnInit {
   constructor() {
     this.course = {
       id: '',
-      title: '',
-      creation: 0,
-      duration: 0,
+      name: '',
+      date: 0,
+      length: 0,
       description: '',
-      star: false,
+      isTopRated: false,
     };
   }
 

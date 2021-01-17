@@ -12,7 +12,7 @@ export class BreadcrumbsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.crumbName = this.crumbName ? `/ ${this.crumbName}` : '/ New Course';
+    this.crumbName = this.crumbName ? `/ ${this.crumbName}` : '';
   }
 
 }

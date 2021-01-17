@@ -27,9 +27,10 @@ export class AddCourseComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
     });
-    this.foundCourse = this.courseService.findCourseById(this.id);
-    this.crumbName = this.foundCourse?.title;
-    console.log(this.foundCourse);
+    this.courseService.findCourseById(this.id).subscribe((res: any) => {
+      this.foundCourse = res;
+    });
+    this.crumbName = this.foundCourse?.name || 'New Course';
   }
 
 

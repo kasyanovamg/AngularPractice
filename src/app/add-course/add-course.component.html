@@ -1,4 +1,4 @@
-<app-breadcrumbs [crumbName]="foundCourse?.title"></app-breadcrumbs>
+<app-breadcrumbs [crumbName]="this.crumbName "></app-breadcrumbs>
 <div class="add-course">
     <form class="add-course__content" (submit)="onSave()">
       <h2 class="add-course__title">Login</h2>
@@ -6,7 +6,7 @@
       <div class="add-course__container">
         <div>Title</div>
         <label>
-          <input name="title" required class="add-course__field" [value]="foundCourse?.title" >
+          <input name="title" required class="add-course__field" [value]="foundCourse?.name" >
         </label>
       </div>
 
@@ -18,7 +18,7 @@
       </div>
 
       <div class="add-course__container">
-        <app-date [label]="fieldNames.date" [creationValue]="foundCourse?.creation"></app-date>
+        <app-date [label]="fieldNames.date" [creationValue]="foundCourse?.date"></app-date>
       </div>
 
       <div class="add-course__container">

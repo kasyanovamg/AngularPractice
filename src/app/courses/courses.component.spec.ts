@@ -30,12 +30,6 @@ describe('CoursesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should log a message onChange', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.onChange('');
-    expect(consoleSpy).toHaveBeenCalled();
-  });
-
   it('should log a message onClick', () => {
     component.onClick();
     expect(pipeSpy).toHaveBeenCalled();

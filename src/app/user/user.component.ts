@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthenticationService} from '../shared/authentication.service';
 import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -9,19 +10,18 @@ import {Router} from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  private userInfo: {email: string};
-  public userEmail: string;
+  public user: any;
 
   constructor(private authService: AuthenticationService, private router: Router) {
-    this.userInfo = { email : '' };
-    this.userEmail = '';
   }
 
   @Input()
 
   ngOnInit(): void {
-    this.userInfo = this.authService.getUserInfo();
-    this.userEmail = this.userInfo?.email;
+
+    this.authService.getUserInfo()
+      .pipe(map(item => this.user = item))
+      .subscribe({});
   }
 
   onLogout(): void {

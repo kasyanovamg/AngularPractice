@@ -22,6 +22,7 @@ import { DateComponent } from './date/date.component';
 import { DurationComponent } from './duration/duration.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HeaderModule,
     FormsModule,
     LoginModule,
+    HttpClientModule,
   ],
   providers: [FilterCourses, CoursesService],
   bootstrap: [AppComponent]

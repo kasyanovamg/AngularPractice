@@ -1,26 +1,46 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {
 
-  login(userInfo: {email: ''}): void {
-    localStorage.setItem('userInfo', JSON.stringify({email: userInfo.email}));
+  }
+
+  login({login, password}: { login: string; password: string }): any {
+    return this.http.post(`${environment.apiUrl}auth/login`, {login, password})
+      .pipe(map(token => {
+        localStorage.setItem('authToken', JSON.stringify(token));
+        return token;
+      }));
   }
 
   logout(): void {
-    localStorage.setItem('userInfo', JSON.stringify(''));
+    localStorage.setItem('authToken', JSON.stringify(''));
   }
 
   isAuthenticated(): boolean {
-    return !!JSON.parse(localStorage.getItem('userInfo') as string)?.email;
+    return !!JSON.parse(localStorage.getItem('authToken') as string)?.token;
   }
 
   getUserInfo(): any {
-    const storageItem = localStorage.getItem('userInfo');
-    return JSON.parse(storageItem as string);
+    const authToken: string = localStorage.getItem('authToken') as string;
+    const token = JSON.parse(authToken)?.token;
+
+    return this.http.post(`${environment.apiUrl}auth/userinfo`, {token}, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .pipe(map(user => {
+        localStorage.setItem('user', JSON.stringify(user));
+        return user;
+      }));
   }
 }

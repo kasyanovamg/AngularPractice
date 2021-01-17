@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Course} from '../course/course.component';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -46,29 +48,28 @@ export class CoursesService {
     },
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getCourseList(): Array<Course> {
-    return this.coursesList;
+  getCourseList(searchedWord: string = '', sort: string = 'date'): any {
+    return this.http.get(`${environment.apiUrl}courses?textFragment=${searchedWord}&sort=${sort}`);
   }
 
   createCourse(course: Course): void {
     console.log('CREATE COURSE, ', course);
   }
 
-  findCourseById(courseId?: string | null): Course | null {
-    console.log('FIND COURSE, ', courseId);
-    return this.coursesList.find(course => course.id === courseId) || null;
+  findCourseById(courseId?: string | null): any {
+    return this.http.get(`${environment.apiUrl}courses/${courseId}`);
   }
 
   updateCourse(course: Course): void {
     console.log('UPDATE COURSE, ', course);
   }
 
-  removeCourse(courseId: string): Array<Course> | void {
-    if (confirm(`Are you sure you want to delete ${this.coursesList.find(course => course.id === courseId)?.title}?`)) {
-      this.coursesList = this.coursesList.filter(course => course.id !== courseId);
-      return this.coursesList;
+  removeCourse(courseId: string): any {
+    if (confirm(`Are you sure you want to delete the course?`)) {
+      // this.coursesList = this.coursesList.filter(course => course.id !== courseId);
+      return this.http.delete(`${environment.apiUrl}courses/${courseId}`);
     }
   }
 

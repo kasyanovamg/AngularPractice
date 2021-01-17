@@ -2,6 +2,7 @@ import {InjectionToken, ModuleWithProviders, NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 import { LoginComponent } from './login.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 const APP_STORAGE = new InjectionToken('userInfo', {
   providedIn: 'root',
@@ -15,7 +16,8 @@ const APP_STORAGE = new InjectionToken('userInfo', {
   ],
   imports: [
     SharedModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ]
 })
 
