@@ -1,18 +1,26 @@
-<app-breadcrumbs></app-breadcrumbs>
-<div class="courses-page">
-  <main class="courses-page__contents">
+<app-loading-block *ngIf="isLoading"></app-loading-block>
+<div *ngIf="!isLoading">
+  <app-breadcrumbs></app-breadcrumbs>
+  <div class="courses-page">
+    <main class="courses-page__contents">
 
-    <!-- two-way binding -->
-    <input [(ngModel)]="searchedWord" class="courses-page__search-box" placeholder="Type to search">
+      <!-- two-way binding -->
+      <input [(ngModel)]="searchedWord" class="courses-page__search-box" placeholder="Type to search">
 
-    <button (click)="onClick()" class="courses-page__search-btn">Search</button>
-    <div class="courses-page__add-container"><button class="courses-page__add-btn" (click)="onAdd()">Add course</button></div>
-    <div *ngIf="courseLength || isLoaded" >
-      <app-course *ngFor="let course of courses" [course]="course" (onDelete)="onRootDelete($event)" (onEdit)="onEdit($event)"></app-course>
-      <div class="courses-page__load-more"><button class="courses-page__load-more-btn">Load more</button></div>
-    </div>
+      <button (click)="onClick()" class="courses-page__search-btn">Search</button>
+      <div class="courses-page__add-container">
+        <button class="courses-page__add-btn" (click)="onAdd()">Add course</button>
+      </div>
+      <div *ngIf="courseLength">
+        <app-course *ngFor="let course of courses" [course]="course" (onDelete)="onRootDelete($event)"
+                    (onEdit)="onEdit($event)"></app-course>
+        <div class="courses-page__load-more">
+          <button class="courses-page__load-more-btn">Load more</button>
+        </div>
+      </div>
 
-    <div *ngIf="!courseLength"><h3>No data. Add new course</h3></div>
+      <div *ngIf="!courseLength"><h3>No data. Add new course</h3></div>
 
-  </main>
+    </main>
+  </div>
 </div>

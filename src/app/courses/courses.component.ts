@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DoCheck, Input, OnInit} from '@angular/core';
 import {Course} from '../course/course.component';
 import {FilterCourses} from '../filterCoursesPipe';
 import {CoursesService} from '../shared/courses.service';
 import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses',
@@ -20,21 +21,35 @@ export class CoursesComponent implements OnInit {
   public searchedWord = '';
 
   public courseLength: boolean;
-  public isLoaded?: boolean;
+  public isLoading?: boolean;
 
   @Input()
   public courses: Array<Course | undefined> | any;  // todo: fix the type
 
 
   ngOnInit(): void {
+    this.isLoading = !!this.courses?.length;
     this.coursesService.getCourseList()
+      .pipe(
+        map((res: any) => {
+          console.log('map', this.isLoading, res);
+          this.isLoading = !!res?.length;
+          this.courses = res;
+        })
+      )
       .subscribe((res: Array<Course>) => {
-        this.courses = res;
-        this.courseLength = !!res.length;
-        this.isLoaded = true;
-        console.log(1111, this.courses, this.courseLength, this.isLoaded);
+        // this.courses = res;
+        // this.courseLength = !!res.length;
+        // this.isLoading = !!this.courses?.length;
+        // console.log(1111, this.courses, this.courseLength, this.isLoading);
       });
+    // this.coursesService.getCourseList().unsubscribe();
   }
+
+  // ngDoCheck(): void {
+  //   console.log('ngDoCheck', this.isLoading);
+  //   this.isLoading = !!this.courses?.length;
+  // }
 
   public onEdit(id: string): void {
     this.router.navigate(['courses', id]);
@@ -49,7 +64,6 @@ export class CoursesComponent implements OnInit {
       .subscribe((res: Array<Course>) => {
         this.courses = res;
         this.courseLength = !!res.length;
-        console.log(1111, this.courses, this.courseLength);
       });
   }
 

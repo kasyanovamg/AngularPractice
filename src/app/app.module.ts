@@ -23,6 +23,7 @@ import { DurationComponent } from './duration/duration.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoadingBlockComponent } from './loading-block/loading-block.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {HttpClientModule} from '@angular/common/http';
     DurationComponent,
     AuthorsComponent,
     NotFoundComponent,
+    LoadingBlockComponent,
   ],
   imports: [
     BrowserModule,
