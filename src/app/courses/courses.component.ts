@@ -1,55 +1,49 @@
-import {ChangeDetectionStrategy, Component, DoCheck, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Course} from '../course/course.component';
 import {FilterCourses} from '../filterCoursesPipe';
 import {CoursesService} from '../shared/courses.service';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CoursesComponent implements OnInit {
 
   constructor(private filterCourses: FilterCourses, private coursesService: CoursesService, private router: Router) {
     this.courseLength = false;
+    this.isLoading = this.coursesService.getLoadingStatus();
   }
 
   public searchedWord = '';
-
   public courseLength: boolean;
   public isLoading?: boolean;
-
-  @Input()
   public courses: Array<Course | undefined> | any;  // todo: fix the type
 
+  subject = new Subject();
 
   ngOnInit(): void {
-    this.isLoading = !!this.courses?.length;
-    this.coursesService.getCourseList()
-      .pipe(
-        map((res: any) => {
-          console.log('map', this.isLoading, res);
-          this.isLoading = !!res?.length;
-          this.courses = res;
-        })
-      )
-      .subscribe((res: Array<Course>) => {
-        // this.courses = res;
-        // this.courseLength = !!res.length;
-        // this.isLoading = !!this.courses?.length;
-        // console.log(1111, this.courses, this.courseLength, this.isLoading);
-      });
-    // this.coursesService.getCourseList().unsubscribe();
+    this.getCourses();
+    this.subject.pipe(
+      filter((text: any) => text.length > 2),
+      debounceTime(1000),
+    ).subscribe((v: any) => this.getCourses(v));
   }
 
-  // ngDoCheck(): void {
-  //   console.log('ngDoCheck', this.isLoading);
-  //   this.isLoading = !!this.courses?.length;
-  // }
+  private getCourses(word: string = ''): void {
+    this.coursesService.setLoading(false);
+    this.coursesService.getCourseList(word, 'date')
+      .subscribe((res: Array<Course>) => {
+        this.coursesService.setLoading(true);
+        this.courseLength = !!res?.length;
+        this.courses = res;
+        this.isLoading = this.coursesService.getLoadingStatus();
+      });
+  }
 
   public onEdit(id: string): void {
     this.router.navigate(['courses', id]);
@@ -60,21 +54,24 @@ export class CoursesComponent implements OnInit {
   }
 
   public onClick(): void {
-    this.coursesService.getCourseList(this.searchedWord, 'date')
-      .subscribe((res: Array<Course>) => {
-        this.courses = res;
-        this.courseLength = !!res.length;
-      });
+    this.getCourses();
+  }
+
+  public onChange(event: any): any {
+    const value = event.target.value;
+    this.subject.next(value);
   }
 
   public onRootDelete(id: string): void {
     this.coursesService.removeCourse(id).subscribe();
-    // this.courses = this.coursesService.getCourseList();
+
+    this.coursesService.setLoading(false);
     this.coursesService.getCourseList(this.searchedWord, 'date')
       .subscribe((res: Array<Course>) => {
         this.courses = res;
         this.courseLength = !!res.length;
-        console.log(1111, this.courses, this.courseLength);
+        this.coursesService.setLoading(true);
+        this.isLoading = this.coursesService.getLoadingStatus();
       });
   }
 

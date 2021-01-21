@@ -48,7 +48,11 @@ export class CoursesService {
     },
   ];
 
-  constructor(private http: HttpClient) { }
+  private isLoadingCourse: boolean;
+
+  constructor(private http: HttpClient) {
+    this.isLoadingCourse = false;
+  }
 
   getCourseList(searchedWord: string = '', sort: string = 'date'): any {
     return this.http.get(`${environment.apiUrl}courses?textFragment=${searchedWord}&sort=${sort}`);
@@ -68,9 +72,17 @@ export class CoursesService {
 
   removeCourse(courseId: string): any {
     if (confirm(`Are you sure you want to delete the course?`)) {
-      // this.coursesList = this.coursesList.filter(course => course.id !== courseId);
       return this.http.delete(`${environment.apiUrl}courses/${courseId}`);
     }
+  }
+
+  setLoading(flag: boolean): boolean {
+    this.isLoadingCourse = flag;
+    return this.isLoadingCourse;
+  }
+
+  getLoadingStatus(): boolean {
+    return this.isLoadingCourse;
   }
 
 }

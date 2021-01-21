@@ -1,13 +1,15 @@
-<app-loading-block *ngIf="isLoading"></app-loading-block>
-<div *ngIf="!isLoading">
+<app-loading-block *ngIf="!this.isLoading"></app-loading-block>
+<div *ngIf="this.isLoading">
   <app-breadcrumbs></app-breadcrumbs>
   <div class="courses-page">
     <main class="courses-page__contents">
 
       <!-- two-way binding -->
-      <input [(ngModel)]="searchedWord" class="courses-page__search-box" placeholder="Type to search">
+<!--      <input [(ngModel)]="searchedWord" class="courses-page__search-box" placeholder="Type to search">-->
 
-      <button (click)="onClick()" class="courses-page__search-btn">Search</button>
+      <input (keyup)="onChange($event)" [value]="this.searchedWord" placeholder="Type to search" class="courses-page__search-box" >
+
+<!--      <button (click)="onClick()" class="courses-page__search-btn">Search</button>-->
       <div class="courses-page__add-container">
         <button class="courses-page__add-btn" (click)="onAdd()">Add course</button>
       </div>
