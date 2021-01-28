@@ -20,8 +20,9 @@ export class AuthenticationService {
       }));
   }
 
-  logout(): void {
+  logout(): any {
     localStorage.setItem('authToken', JSON.stringify(''));
+    localStorage.setItem('user', JSON.stringify(''));
   }
 
   isAuthenticated(): boolean {

@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthenticationService} from '../shared/authentication.service';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {getUser} from '../+store/authActions';
+import {select, Store} from '@ngrx/store';
+import { selectUserName} from './user.selectors';
 
 @Component({
   selector: 'app-user',
@@ -10,18 +12,17 @@ import {map} from 'rxjs/operators';
 })
 export class UserComponent implements OnInit {
 
-  public user: any;
+  public user$: any;
 
-  constructor(private authService: AuthenticationService, private router: Router) {
+  constructor(private authService: AuthenticationService, private router: Router, private store: Store<any>) {
+    this.user$ = this.store.pipe(select(selectUserName));
+
   }
 
   @Input()
 
   ngOnInit(): void {
-
-    this.authService.getUserInfo()
-      .pipe(map(item => this.user = item))
-      .subscribe({});
+    this.store.dispatch(getUser());
   }
 
   onLogout(): void {

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthenticationService} from '../shared/authentication.service';
 import {Router} from '@angular/router';
-import {first} from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import {login} from '../+store/authActions';
 
 @Component({
   selector: 'app-login',
@@ -11,19 +12,17 @@ import {first} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  auth$: any;
+
+  constructor(private authService: AuthenticationService, private router: Router, private store: Store<any>) {
+    this.auth$ = store.pipe(select('auth'));
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(f: NgForm): void {
-    this.authService.login(f.form.value)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.router.navigate(['courses']);
-        },
-      });
+    this.store.dispatch(login(f.form.value));
   }
 
 }

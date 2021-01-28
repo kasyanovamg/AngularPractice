@@ -3,6 +3,9 @@ import {SharedModule} from '../shared/shared.module';
 import { LoginComponent } from './login.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects} from './auth.effects';
+import {Store} from '@ngrx/store';
 
 const APP_STORAGE = new InjectionToken('userInfo', {
   providedIn: 'root',
