@@ -24,12 +24,13 @@ import {AuthorsComponent} from './authors/authors.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoadingBlockComponent} from './loading-block/loading-block.component';
-import {authReducers, coursesReducers} from './+store';
+import {authReducers, coursesLoadingReducers, coursesReducers} from './+store';
 import {Store, StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment.prod';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './login/auth.effects';
+import {CoursesEffects} from './courses/courses.effects';
 
 @NgModule({
   declarations: [
@@ -58,13 +59,13 @@ import {AuthEffects} from './login/auth.effects';
     FormsModule,
     LoginModule,
     HttpClientModule,
-    StoreModule.forRoot({auth: authReducers, courses: coursesReducers}),
+    StoreModule.forRoot({auth: authReducers, courses: coursesReducers, isLoaded: coursesLoadingReducers}),
     // Instrumentation must be imported after importing StoreModule (config is optional).
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    [EffectsModule.forRoot([AuthEffects])]
+    [EffectsModule.forRoot([AuthEffects, CoursesEffects])]
   ],
   providers: [FilterCourses, CoursesService, Store],
   bootstrap: [AppComponent]
