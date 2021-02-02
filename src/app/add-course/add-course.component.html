@@ -1,12 +1,13 @@
 <app-breadcrumbs [crumbName]="this.crumbName "></app-breadcrumbs>
 <div class="add-course">
-    <form class="add-course__content" (submit)="onSave()">
+    <form class="add-course__content" (ngSubmit)="onSave()" [formGroup]="form" >
       <h2 class="add-course__title">Login</h2>
 
       <div class="add-course__container">
         <div>Title</div>
-        <label>
-          <input name="title" required class="add-course__field" [value]="foundCourse?.name" >
+        <label for="title">
+          <control-messages [control]="form.get('name')"></control-messages>
+          <input formControlName="title" class="add-course__field" id="title" >
         </label>
       </div>
 

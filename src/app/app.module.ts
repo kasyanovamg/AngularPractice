@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -60,12 +60,12 @@ import {CoursesEffects} from './courses/courses.effects';
     LoginModule,
     HttpClientModule,
     StoreModule.forRoot({auth: authReducers, courses: coursesReducers, isLoaded: coursesLoadingReducers}),
-    // Instrumentation must be imported after importing StoreModule (config is optional).
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production // Restrict extension to log-only mode
+      maxAge: 25,
+      logOnly: environment.production,
     }),
-    [EffectsModule.forRoot([AuthEffects, CoursesEffects])]
+    [EffectsModule.forRoot([AuthEffects, CoursesEffects])],
+    ReactiveFormsModule,
   ],
   providers: [FilterCourses, CoursesService, Store],
   bootstrap: [AppComponent]
